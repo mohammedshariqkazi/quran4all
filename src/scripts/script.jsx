@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import Loader from '../Loader.jsx'; // Import the Loader component
 
 function Script() {
   const [selectedChapter, setSelectedChapter] = useState("1");
-  const [selectedLanguage, setSelectedLanguage] = useState("english"); // Default language
   const [chapterVerses, setChapterVerses] = useState([]);
+  const [loading, setLoading] = useState(false); // State to track loading
 
   const chapterNames = [
     "Surah Fatiha",
@@ -126,30 +127,29 @@ function Script() {
 
   useEffect(() => {
     const fetchVerses = async () => {
+      setLoading(true); // Start loading
+
       const arabicResponse = await fetch('/src/assets/arabic.txt');
       const englishResponse = await fetch('/src/assets/english.txt');
-      const hindiResponse = await fetch('/src/assets/hindi.txt');
 
       const arabicText = await arabicResponse.text();
       const englishText = await englishResponse.text();
-      const hindiText = await hindiResponse.text();
 
       const arabicChapters = arabicText.trim().split("\n");
       const englishChapters = englishText.trim().split("\n");
-      const hindiChapters = hindiText.trim().split("\n");
 
       const chapterVersesData = arabicChapters.map((arabicVerse, index) => {
-        const [chapter, verseNo, arabic] = arabicVerse.split("|");
+        const [chapter, verseNo, verse] = arabicVerse.split("|");
         return {
           chapter: parseInt(chapter),
           verseNo: parseInt(verseNo),
-          arabic,
+          arabic: verse,
           english: englishChapters[index]?.split("|")[2] || "",
-          hindi: hindiChapters[index]?.split("|")[2] || "",
         };
       });
 
       setChapterVerses(chapterVersesData);
+      setLoading(false); // Stop loading
     };
 
     fetchVerses();
@@ -159,39 +159,31 @@ function Script() {
     setSelectedChapter(event.target.value);
   };
 
-  const handleLanguageChange = (event) => {
-    setSelectedLanguage(event.target.value);
-  };
-
   const selectedChapterVerses = chapterVerses.filter(
     (verse) => verse.chapter === parseInt(selectedChapter)
   );
 
   return (
-    <div className="language-selector">
-        <select value={selectedLanguage} onChange={handleLanguageChange}>
-          <option value="english">English</option>
-          <option value="hindi">Hindi</option>
-        </select>
-    
     <div className="chapter-selector">
       <select value={selectedChapter} onChange={handleChapterChange}>
         {chapterNames.map((chapterName, index) => (
           <option key={index} value={index + 1}>{chapterName}</option>
         ))}
       </select>
-      
-      </div>
-      <div className="verses-container">
-        <div className="verses">
-          {selectedChapterVerses.map((verse, index) => (
-            <div key={index} className="verse">
-              <p className="arabic-verse">{verse.arabic}</p>
-              <p className="translation-verse">{verse[selectedLanguage]}</p>
-            </div>
-          ))}
+      {loading ? (
+        <Loader /> // Show loader if loading is true
+      ) : (
+        <div className="verses-container">
+          <div className="verses">
+            {selectedChapterVerses.map((verse, index) => (
+              <div key={index} className="verse">
+                <p className="arabic-verse">{verse.arabic}</p>
+                <p className="english-verse">{verse.english}</p>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
