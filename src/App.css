@@ -1,0 +1,96 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to bottom, #f0f2f5, #15a6e4);
+}
+
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+  max-width: 100%;
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+.top-header {
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.chapter-selector select {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  margin-bottom: 10px; /* Add margin to bottom of chapter selector */
+}
+
+.language-selector select {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.verses-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  max-height: 60vh;
+  max-width: 100%;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.verse {
+  margin: 15px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.arabic-verse {
+  font-family: 'Noto Sans Arabic', sans-serif;
+  font-size: 25px;
+  line-height: 1.6;
+  text-align: right;
+  direction: rtl;
+  color: #000000;
+}
+
+.english-verse {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #000000;
+  text-align: left;
+}
+
+.created-by {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #000000;
+}
+@media (max-width: 768px) {
+  /* Apply these styles only for screens with a maximum width of 768px (mobile screens) */
+  .verses-container {
+    max-width: 90%; /* Adjust this value as needed */
+  
+  }
+}

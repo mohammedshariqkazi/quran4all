@@ -1,0 +1,94 @@
+/* Reset some default styles */
+html, body, div, h1, h2, h3, p, select {
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Center the content */
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+  }
+  
+  /* Add spacing to the top header */
+  .top-header {
+    margin-bottom: 20px;
+  }
+  
+  /* Style the chapter selector dropdown */
+  .chapter-selector select {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    color: #333;
+  }
+  
+  /* Style the verses container */
+  .verses-container {
+    background-color: #f5f5f5;
+    padding: 5px;
+    margin-top: 1rem; /* Add margin at the top */
+    margin-bottom: 1rem; /* Add margin at the bottom */
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    max-height: 80vh;
+    scroll-behavior: smooth;
+  }
+  
+  /* Style individual verses */
+  .verse {
+    margin: 15px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Style Arabic verses */
+  .arabic-verse {
+    font-family: 'Noto Sans Arabic', sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+    text-align: right;
+    direction: rtl;
+    color: #333;
+  }
+  
+  /* Style English verses */
+  .english-verse {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #444;
+    text-align: left;
+  }
+  
+  /* Style the "Created by" section */
+  .created-by {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #777;
+  }
+  
+  .logo {
+    max-width: 100px; /* Limit width to 100 units */
+    max-height: 100px; /* Limit height to 100 units */
+    display: block; /* Center horizontally within its container */
+    margin: 0 auto; /* Center horizontally within its container */
+  }
+
+  @media (max-width: 768px) {
+    .container {
+        min-height: 90vh;
+    }
+}
+  
